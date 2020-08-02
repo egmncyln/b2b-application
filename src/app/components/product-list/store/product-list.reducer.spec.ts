@@ -4,7 +4,7 @@ import { Action } from '@ngrx/store';
 import { reducer } from './product-list.reducer';
 
 describe('Product List Reducer', () => {
-  describe('IncreaseQuantity Action', () => {
+  describe('increaseQuantity Action', () => {
     it('should increase quantity in product list and return state in an immutable way', () => {
       const initialState: ProductListState = {
         productList: [
@@ -32,7 +32,7 @@ describe('Product List Reducer', () => {
     });
   });
 
-  describe('DecreaseQuantity Action', () => {
+  describe('decreaseQuantity Action', () => {
     it('should decrease quantity in product list and return state in an immutable way', () => {
       const initialState: ProductListState = {
         productList: [

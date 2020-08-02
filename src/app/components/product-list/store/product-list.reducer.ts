@@ -8,16 +8,21 @@ export const productListInitialState: ProductListState = {
         {
             id: 'product-1',
             name: 'Tavuk Göğüs',
-            quantity: 1
+            quantity: 4
         },
         {
             id: 'product-2',
             name: 'Yulaf Ezmesi',
-            quantity: 1
+            quantity: 3
         },
         {
             id: 'product-3',
             name: 'Hindi Füme',
+            quantity: 2
+        },
+        {
+            id: 'product-4',
+            name: 'Bulgur Pilavı',
             quantity: 1
         }
     ]

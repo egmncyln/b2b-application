@@ -1,1 +1,15 @@
-<p>product-list works!</p>
+<div class="row">
+    <h2>Products</h2>
+</div>
+<div class="row">
+    <div *ngFor="let product of productList$ | async" class="card m-2">
+        <div class="card-body">
+            <h5 class="card-title">{{ product?.name }}</h5>
+            <button class="btn btn-primary" (click)="onAddToListClicked(product)">Add To List</button>
+            <app-quantity-calculator [value]="product?.quantity"
+                (decreaseQuantity)="onDecreaseQuantityClicked(product?.id)"
+                (increaseQuantity)="onIncreaseQuantityClicked(product?.id)">
+            </app-quantity-calculator>
+        </div>
+    </div>
+</div>
