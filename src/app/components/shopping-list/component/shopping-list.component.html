@@ -1,1 +1,28 @@
-<p>shopping-list works!</p>
+<div class="row">
+    <h2>Shopping List</h2>
+</div>
+<div class="row">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Product Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of shoppingList$ | async;">
+                <td>{{ product?.id }}</td>
+                <td>{{ product?.name }}</td>
+                <td>
+                    <app-quantity-calculator [value]="product?.quantity"
+                        (decreaseQuantity)="onDecreaseQuantityClicked(product?.id)"
+                        (increaseQuantity)="onIncreaseQuantityClicked(product?.id)">
+                    </app-quantity-calculator>
+                </td>
+                <td><button class="btn btn-danger" (click)="onRemoveClicked(product?.id)">X</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

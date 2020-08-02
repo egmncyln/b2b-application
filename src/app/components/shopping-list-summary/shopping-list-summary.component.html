@@ -1,1 +1,12 @@
-<p>shopping-list-summary works!</p>
+<ng-container *ngIf="shoppingList$ | async as shoppingList">
+    <ng-container *ngIf="shoppingList?.length > 0">
+        <div class="row">
+            <h2>Shopping List Summary</h2>
+        </div>
+        <div class="row">
+            <button *ngFor="let product of shoppingList" type="button" class="btn btn-primary">
+                {{ product?.name }} <span class="badge badge-light"> {{ product?.quantity }}</span>
+            </button>
+        </div>
+    </ng-container>
+</ng-container>
