@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  envName: '(Prod)',
+  apiUrl: 'http://apiprodurl',
+  apiPort: 5000
 };
