@@ -7,7 +7,21 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "serve-dev": "ng serve --configuration=dev",
+    "serve-test": "ng serve --configuration=test",
+    "serve-prod": "ng serve --configuration=production",
+    "test-script": "ng test --no-watch --no-progress --browsers=ChromeHeadless",
+    "build-dev": "ng build --configuration=dev",
+    "build-dev-with-tests": "npm run test-script && ng build --configuration=dev",
+    "build-test": "ng build --configuration=test",
+    "build-test-with-tests": "npm run test-script && ng build --configuration=test",
+    "build-prod": "ng build --configuration=production",
+    "build-prod-with-tests": "npm run test-script && ng build --configuration=production",
+    "docker-create-image": "docker build -t image-b2b-application .",
+    "docker-run-image": "docker run -p 4201:80 --name b2b-application image-b2b-application",
+    "docker-serve": "npm run docker-create-image && npm run docker-run-image",
+    "docker-serve-with-tests": "npm run test-script && npm run docker-create-image && npm run docker-run-image"
   },
   "private": true,
   "dependencies": {
