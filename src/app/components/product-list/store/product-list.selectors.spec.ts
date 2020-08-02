@@ -13,7 +13,6 @@ describe('Product List Selectors', () => {
                     }
                 ]
             }
-            
             const selectorResult = productListSelectors.getProductList.projector(initialState);
 
             expect(selectorResult.length).toEqual(1);
