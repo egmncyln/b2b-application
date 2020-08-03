@@ -31,10 +31,7 @@ describe('ProductListComponent', () => {
 
   beforeEach(() => {
     mockStore = TestBed.inject(MockStore);
-    mockSelector = mockStore.overrideSelector(
-      productListSelectors.getProductList,
-      []
-    );
+    mockSelector = mockStore.overrideSelector(productListSelectors.getProductList, []);
     fixture = TestBed.createComponent(ProductListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
