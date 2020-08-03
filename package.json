@@ -18,8 +18,8 @@
     "build-test-with-tests": "npm run test-script && ng build --configuration=test",
     "build-prod": "ng build --configuration=production",
     "build-prod-with-tests": "npm run test-script && ng build --configuration=production",
-    "docker-create-image": "docker build -t image-b2b-application .",
-    "docker-run-image": "docker run -p 4201:80 --name b2b-application image-b2b-application",
+    "docker-create-image": "docker build -t image-egemen-ceylan .",
+    "docker-run-image": "docker run -p 4201:80 --name egemen-ceylan image-egemen-ceylan",
     "docker-serve": "npm run docker-create-image && npm run docker-run-image",
     "docker-serve-with-tests": "npm run test-script && npm run docker-create-image && npm run docker-run-image"
   },
