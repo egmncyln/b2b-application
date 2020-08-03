@@ -32,24 +32,9 @@ export const productListReducer = createReducer(
     productListInitialState,
     on(productListActions.increaseQuantity, (state, action) => {
         let product: Product = state.productList.filter(x => x.id === action.id)[0];
-        let index: number = state.productList.indexOf(product);
-        let newProduct: Product = new Product(product.id, product.name, product.quantity + 1);
-
-        const updatedProduct = {
-            ...state.productList[index],
-            ...newProduct
-        };
-
-        const updatedProductList = [...state.productList];
-        updatedProductList[index] = updatedProduct;
-
-        return { ...state, productList: updatedProductList }
-    }),
-    on(productListActions.decreaseQuantity, (state, action) => {
-        let product: Product = state.productList.filter(x => x.id === action.id)[0];
-        if (!!product && product.quantity > 1) {
+        if (!!product) {
             let index: number = state.productList.indexOf(product);
-            let newProduct: Product = new Product(product.id, product.name, product.quantity - 1);
+            let newProduct: Product = new Product(product.id, product.name, product.quantity + 1);
 
             const updatedProduct = {
                 ...state.productList[index],
@@ -61,7 +46,34 @@ export const productListReducer = createReducer(
 
             return { ...state, productList: updatedProductList }
         }
-        return { ...state };
+        else {
+            return state;
+        }
+    }),
+    on(productListActions.decreaseQuantity, (state, action) => {
+        let product: Product = state.productList.filter(x => x.id === action.id)[0];
+        if (!!product) {
+            if (product.quantity > 1) {
+                let index: number = state.productList.indexOf(product);
+                let newProduct: Product = new Product(product.id, product.name, product.quantity - 1);
+
+                const updatedProduct = {
+                    ...state.productList[index],
+                    ...newProduct
+                };
+
+                const updatedProductList = [...state.productList];
+                updatedProductList[index] = updatedProduct;
+
+                return { ...state, productList: updatedProductList }
+            }
+            else {
+                return state;
+            }
+        }
+        else {
+            return state;
+        }
     })
 )
 
