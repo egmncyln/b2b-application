@@ -1,6 +1,8 @@
+import { ENVIRONMENT_NAMES } from './environment-names.constant';
+
 export const environment = {
   production: false,
-  envName: '(Test)',
+  envName: ENVIRONMENT_NAMES.TEST,
   apiUrl: 'http://apitesturl',
   apiPort: 5000
 };

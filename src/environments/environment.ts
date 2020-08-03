@@ -2,9 +2,11 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { ENVIRONMENT_NAMES } from './environment-names.constant';
+
 export const environment = {
   production: false,
-  envName: '(Local)',
+  envName: ENVIRONMENT_NAMES.LOCAL,
   apiUrl: 'http://localhost',
   apiPort: 5000
 };
