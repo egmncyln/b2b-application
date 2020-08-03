@@ -20,8 +20,7 @@ describe('Shopping List Selectors', () => {
             }
             const selectorResult = shoppingListSelectors.getShoppingList.projector(initialState);
 
-            expect(selectorResult.length).toEqual(2);
-            expect(selectorResult[1].id).toEqual('product-2');
+            expect(selectorResult).toEqual(initialState.shoppingList);
         });
     });
 });

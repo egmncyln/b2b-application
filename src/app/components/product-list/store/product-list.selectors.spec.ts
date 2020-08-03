@@ -15,8 +15,7 @@ describe('Product List Selectors', () => {
             }
             const selectorResult = productListSelectors.getProductList.projector(initialState);
 
-            expect(selectorResult.length).toEqual(1);
-            expect(selectorResult[0].id).toEqual('product-1');
+            expect(selectorResult).toEqual(initialState.productList);
         });
     });
 });
