@@ -14,20 +14,18 @@ describe('Shopping List Reducer', () => {
                     name: 'Tavuk Göğüs',
                     quantity: 1
                 }
-            })
+            });
             const newState: ShoppingListState = reducer(initialState, action);
-            const expectedState: ShoppingListState = {
-                shoppingList: [
-                    {
-                        id: 'product-1',
-                        name: 'Tavuk Göğüs',
-                        quantity: 1
-                    }
-                ]
-            };
+            const expectedShoppingList = [
+                {
+                    id: 'product-1',
+                    name: 'Tavuk Göğüs',
+                    quantity: 1
+                }
+            ];
 
-            expect(newState).toEqual(expectedState);
-            expect(newState).not.toBe(expectedState);
+            expect(newState.shoppingList).toEqual(expectedShoppingList);
+            expect(newState).not.toBe(initialState);
         });
 
         it('should increase quantity in shopping list and return state in an immutable way', () => {
@@ -48,18 +46,9 @@ describe('Shopping List Reducer', () => {
                 }
             })
             const newState: ShoppingListState = reducer(initialState, action);
-            const expectedState: ShoppingListState = {
-                shoppingList: [
-                    {
-                        id: 'product-1',
-                        name: 'Tavuk Göğüs',
-                        quantity: 5
-                    }
-                ]
-            };
 
-            expect(newState).toEqual(expectedState);
-            expect(newState).not.toBe(expectedState);
+            expect(newState.shoppingList[0].quantity).toEqual(5);
+            expect(newState).not.toBe(initialState);
         });
     });
 
@@ -74,20 +63,28 @@ describe('Shopping List Reducer', () => {
                     }
                 ]
             }
-            const action: Action = shoppingListActions.increaseQuantity({ id: 'product-1' });
+            const action: Action = shoppingListActions.increaseQuantity({ id: initialState.shoppingList[0].id });
             const newState: ShoppingListState = reducer(initialState, action);
-            const expectedState: ShoppingListState = {
+
+            expect(newState.shoppingList[0].quantity).toEqual(4);
+            expect(newState).not.toBe(initialState);
+        });
+
+        it('should return same state because there is no product in the list with given id', () => {
+            const initialState: ShoppingListState = {
                 shoppingList: [
                     {
                         id: 'product-1',
                         name: 'Tavuk Göğüs',
-                        quantity: 4
+                        quantity: 3
                     }
                 ]
-            };
+            }
+            const action: Action = shoppingListActions.increaseQuantity({ id: 'product-2' });
+            const newState: ShoppingListState = reducer(initialState, action);
 
-            expect(newState).toEqual(expectedState);
-            expect(newState).not.toBe(expectedState);
+            expect(newState).toEqual(initialState);
+            expect(newState).toBe(initialState);
         });
     });
 
@@ -102,20 +99,11 @@ describe('Shopping List Reducer', () => {
                     }
                 ]
             }
-            const action: Action = shoppingListActions.decreaseQuantity({ id: 'product-1' });
+            const action: Action = shoppingListActions.decreaseQuantity({ id: initialState.shoppingList[0].id });
             const newState: ShoppingListState = reducer(initialState, action);
-            const expectedState: ShoppingListState = {
-                shoppingList: [
-                    {
-                        id: 'product-1',
-                        name: 'Tavuk Göğüs',
-                        quantity: 2
-                    }
-                ]
-            };
 
-            expect(newState).toEqual(expectedState);
-            expect(newState).not.toBe(expectedState);
+            expect(newState.shoppingList[0].quantity).toEqual(2);
+            expect(newState).not.toBe(initialState);
         });
 
         it('should remove product from shopping list and return state in an immutable way', () => {
@@ -128,12 +116,28 @@ describe('Shopping List Reducer', () => {
                     }
                 ]
             }
-            const action: Action = shoppingListActions.decreaseQuantity({ id: 'product-1' });
+            const action: Action = shoppingListActions.decreaseQuantity({ id: initialState.shoppingList[0].id });
             const newState: ShoppingListState = reducer(initialState, action);
-            const expectedState: ShoppingListState = { shoppingList: [] };
 
-            expect(newState).toEqual(expectedState);
-            expect(newState).not.toBe(expectedState);
+            expect(newState.shoppingList).toEqual([]);
+            expect(newState).not.toBe(initialState);
+        });
+
+        it('should return same state because there is no product in the list with given id', () => {
+            const initialState: ShoppingListState = {
+                shoppingList: [
+                    {
+                        id: 'product-1',
+                        name: 'Tavuk Göğüs',
+                        quantity: 1
+                    }
+                ]
+            }
+            const action: Action = shoppingListActions.decreaseQuantity({ id: 'product-2' });
+            const newState: ShoppingListState = reducer(initialState, action);
+
+            expect(newState).toEqual(initialState);
+            expect(newState).toBe(initialState);
         });
     });
 
@@ -148,12 +152,11 @@ describe('Shopping List Reducer', () => {
                     }
                 ]
             }
-            const action: Action = shoppingListActions.removeFromList({ id: 'product-1' });
+            const action: Action = shoppingListActions.removeFromList({ id: initialState.shoppingList[0].id });
             const newState: ShoppingListState = reducer(initialState, action);
-            const expectedState: ShoppingListState = { shoppingList: [] };
 
-            expect(newState).toEqual(expectedState);
-            expect(newState).not.toBe(expectedState);
+            expect(newState.shoppingList).toEqual([]);
+            expect(newState).not.toBe(initialState);
         });
     });
 });

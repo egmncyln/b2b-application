@@ -25,28 +25,15 @@ export const shoppingListReducer = createReducer(
 
             return { ...state, shoppingList: updatedShoppingList }
         }
-        return { ...state, shoppingList: [...state.shoppingList, action.product] }
+        else {
+            return { ...state, shoppingList: [...state.shoppingList, action.product] }
+        }
     }),
     on(shoppingListActions.increaseQuantity, (state, action) => {
         let product: Product = state.shoppingList.filter(x => x.id === action.id)[0];
-        let index: number = state.shoppingList.indexOf(product);
-        let newProduct: Product = new Product(product.id, product.name, product.quantity + 1);
-
-        const updatedProduct = {
-            ...state.shoppingList[index],
-            ...newProduct
-        };
-
-        const updatedShoppingList = [...state.shoppingList];
-        updatedShoppingList[index] = updatedProduct;
-
-        return { ...state, shoppingList: updatedShoppingList }
-    }),
-    on(shoppingListActions.decreaseQuantity, (state, action) => {
-        let product: Product = state.shoppingList.filter(x => x.id === action.id)[0];
-        if (!!product && product.quantity > 1) {
+        if (!!product) {
             let index: number = state.shoppingList.indexOf(product);
-            let newProduct: Product = new Product(product.id, product.name, product.quantity - 1);
+            let newProduct: Product = new Product(product.id, product.name, product.quantity + 1);
 
             const updatedProduct = {
                 ...state.shoppingList[index],
@@ -58,7 +45,34 @@ export const shoppingListReducer = createReducer(
 
             return { ...state, shoppingList: updatedShoppingList }
         }
-        return { ...state, shoppingList: state.shoppingList.filter(x => x.id !== action.id) };
+        else {
+            return state;
+        }
+    }),
+    on(shoppingListActions.decreaseQuantity, (state, action) => {
+        let product: Product = state.shoppingList.filter(x => x.id === action.id)[0];
+        if (!!product) {
+            if (product.quantity > 1) {
+                let index: number = state.shoppingList.indexOf(product);
+                let newProduct: Product = new Product(product.id, product.name, product.quantity - 1);
+
+                const updatedProduct = {
+                    ...state.shoppingList[index],
+                    ...newProduct
+                };
+
+                const updatedShoppingList = [...state.shoppingList];
+                updatedShoppingList[index] = updatedProduct;
+
+                return { ...state, shoppingList: updatedShoppingList }
+            }
+            else {
+                return { ...state, shoppingList: state.shoppingList.filter(x => x.id !== action.id) };
+            }
+        }
+        else {
+            return state;
+        }
     }),
     on(shoppingListActions.removeFromList, (state, action) => {
         return { ...state, shoppingList: state.shoppingList.filter(x => x.id !== action.id) }
