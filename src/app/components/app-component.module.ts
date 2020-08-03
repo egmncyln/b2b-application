@@ -4,13 +4,15 @@ import { ProductListComponent } from './product-list/component/product-list.comp
 import { ShoppingListComponent } from './shopping-list/component/shopping-list.component';
 import { QuantityCalculatorComponent } from './quantity-calculator/quantity-calculator.component';
 import { ShoppingListSummaryComponent } from './shopping-list-summary/shopping-list-summary.component';
+import { InformationComponent } from './information/information.component';
 
 @NgModule({
   declarations: [
     ProductListComponent,
     ShoppingListComponent,
     QuantityCalculatorComponent,
-    ShoppingListSummaryComponent
+    ShoppingListSummaryComponent,
+    InformationComponent
   ],
   imports: [
     CommonModule
@@ -19,7 +21,8 @@ import { ShoppingListSummaryComponent } from './shopping-list-summary/shopping-l
     ProductListComponent,
     ShoppingListComponent,
     QuantityCalculatorComponent,
-    ShoppingListSummaryComponent
+    ShoppingListSummaryComponent,
+    InformationComponent
   ]
 })
 export class AppComponentModule { }
