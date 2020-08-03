@@ -18,7 +18,6 @@ export class ShoppingListComponent implements OnInit {
 
   ngOnInit() {
     this.shoppingList$ = this._store.pipe(select(shoppingListSelectors.getShoppingList));
-    // this.shoppingList$ = this._store.select(state => state.shoppingListState.shoppingList);
   }
 
   onIncreaseQuantityClicked(id: string) {

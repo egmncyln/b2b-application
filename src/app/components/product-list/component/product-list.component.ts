@@ -19,7 +19,6 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.productList$ = this._store.pipe(select(productListSelectors.getProductList));
-    // this.productList$ = this._store.select(state => state.productListState.productList);
   }
 
   onAddToListClicked(product: Product) {
