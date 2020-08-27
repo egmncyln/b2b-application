@@ -1,6 +1,10 @@
 # B2bApplication
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.12.
+This is a simple shopping list example project.
+
+Application state was managed with Ngrx.
+
+Unit tests are written with karma-jasmine.
 
 ## Development server
 
